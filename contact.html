@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portfolio site - Contact</title>
+
+        <!-- font -->
+        <link rel="stylesheet" as="style" crossorigin
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        <link rel="stylesheet" href="https://use.typekit.net/dwo0zwk.css">
+        <link rel="stylesheet" href="https://use.typekit.net/dwo0zwk.css">
+
+        <!-- css -->
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/contact.css">
+
+        <!-- js -->
+        <script src="js/contact.js" defer></script>
+
+        <!-- emailJS cdn -->
+        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    </head>
+
+    <body>
+        <div id="contact-screen" class="screen content-screen">
+            <div class="contact">
+                <header class="header_gnb">
+                    <button class="back-btn">← Back</button>
+                    
+                    <h1 class="logo">logo</h1>
+
+                    <nav class="gnb">
+                        <ul>
+                            <li><a href="about.html" class="contents_title_small">About me</a></li>
+                            <li><a href="works.html" class="contents_title_small">Works</a></li>
+                            <li><a href="contact.html" class="contents_title_small">contact</a></li>
+                        </ul>
+                    </nav>
+                </header>
+
+                <div class="contact_top">
+                    <div class="area">
+                        <ul class="circles">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                    <div class="contact_card">
+                        <div class="contact_card_title_wrap">
+                            <p class="contact_card_title contents_title_large_en">Have An Idea<br>In Mind?</p>
+                            <p class="contents_article_small">Feel free to contact!</p>
+                        </div>
+
+                        <p class="contents_article_small">떠오르는 아이디어가 있나요?<br>편하게 연락주세요!</p>
+                        <p class="contents_title_small_en">email<br>y9751y@gmail.com</p>
+                    </div><p class="contents_title_small_en">insta<br>@frxxspxrxt</p>
+                </div><div class="contact_box_wrap">
+                    <form id="contact-form" class="contact-box">
+                        <div class="contact_box_wrap_inside">
+                            <div class="input-box">
+                                <label for="name" class="contents_title_small_en">NAME</label>
+                                <input type="text" id="name" name="name" class="contents_title_medium_en" required
+                                    placeholder="홍길동...">
+                            </div>
+                            <div class="input-box">
+                                <label for="company" class="contents_title_small_en">COMPANY</label>
+                                <input type="text" id="company" name="company" class="contents_title_medium_en" required
+                                    placeholder="주식회사 aaa...">
+                            </div>
+                            <div class="input-box">
+                                <label for="email" class="contents_title_small_en">E-MAIL</label>
+                                <input type="email" id="email" name="email" class="contents_title_medium_en" required
+                                    placeholder="aaa@gmail.com...">
+                            </div>
+                            <div class="input-box">
+                                <label for="phone" class="contents_title_small_en">PHONE</label>
+                                <input type="text" id="phone" name="phone" class="contents_title_medium_en" required
+                                    placeholder="01012345678...">
+                            </div>
+
+                            <div class="message-box">
+                                <label for="message" class="contents_title_small_en">INQUIRY DETAILS</label>
+                                <textarea name="message" id="message" class="contents_title_medium_en"
+                                    placeholder="프로젝트에 대해 알려주세요..." required></textarea>
+                            </div>
+                        </div>
+                        <div class="send-btn btn">
+                            <button type="submit">Send</button>
+                        </div>
+                    </form>
+
+                    <div class="contact_box_title_wrap">
+                        <div class="contact_box_title">
+                            <p class="contents_title_large_en">CONTACT</p>
+                            <div class="contact_title_rectangle"></div>
+                        </div>
+
+                        <p class="contents_article_small">Copyright©2026 jiyeong yun All rights reserved.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <script src="js/email.js" defer></script>
+
+    </body>
+
+</html>

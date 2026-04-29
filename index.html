@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Portfolio site - Main</title>
+
+        <!-- font -->
+        <link rel="stylesheet" as="style" crossorigin
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+        <link rel="stylesheet" href="https://use.typekit.net/dwo0zwk.css">
+        <link rel="stylesheet" href="https://use.typekit.net/dwo0zwk.css">
+
+        <!-- css -->
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <!-- js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <script src="js/main.js" defer></script>
+    </head>
+
+    <body>
+        <div id="main_screen" class="screen">
+            <img src="images/main_img.jpg" alt="main 이미지">
+        </div>
+
+        <div id="second_screen" class="screen hidden">
+            <header class="cd-player-header">DRAG HERE!</header>
+            <div id="cd-player-drop-zone" class="cd-player-disc"></div>
+            <div class="cd-collection">
+                <div class="cd-item">
+                    <div class="cd-disc cd-about" draggable="true" data-target="about.html">
+                        <div class="cd-spindle"></div>
+                    </div>
+                    <span class="cd-label">ABOUT ME</span>
+                </div><!-- cd-item -->
+
+                <div class="cd-item">
+                    <div class="cd-disc cd-works" draggable="true" data-target="works.html">
+                        <div class="cd-spindle"></div>
+                    </div>
+                    <span class="cd-label">WORKS</span>
+                </div><!-- cd-item -->
+
+                <div class="cd-item">
+                    <div class="cd-disc cd-contact" draggable="true" data-target="contact.html">
+                        <div class="cd-spindle"></div>
+                    </div>
+                    <span class="cd-label">CONTACT</span>
+                </div><!-- cd-item -->
+            </div><!-- cd-collection -->
+        </div>
+        <div id="webGLApp"></div>
+    </body>
+
+</html>

@@ -1,0 +1,176 @@
+.content-screen {
+    background-color: #F0EAD8;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+    z-index: 30;
+    width: 100%; height: 100%;
+}
+
+.back-btn {
+    padding: 10px 20px;
+    background: #333; 
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.contact { 
+    width: 100%; 
+    min-height: 100vh; /* 수정: height: 100% 대신 min-height: 100vh 사용 */
+    box-sizing: border-box; /* 추가: 패딩 값이 전체 높이에 포함되도록 설정 */
+    padding: 40px; 
+    display: flex; 
+    flex-direction: column; 
+    background: #F0EAD8; 
+    position: relative; 
+}
+
+.header_gnb {
+    width: 100%; padding: 0 96px; box-sizing: border-box;
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+}
+
+.gnb ul { display: flex; flex-wrap: wrap; gap: 104px; }
+.gnb ul li a { color: #1A1A1A; }
+
+/* 미사용으로 인한 삭제 또는 보류 
+.contact-content {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+#contact-screen.active .contact-content { opacity: 1; transform: translateY(0); }
+*/
+
+.contact_top {
+    width: 100%; padding: 104px 300px; box-sizing: border-box;
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end;
+    
+    /* ⭐ 배경 애니메이션을 가두기 위한 필수 속성 */
+    position: relative; 
+    overflow: hidden; 
+}
+
+.contact_card {
+    padding: 30px; background: #1a1a1a;
+    display: inline-flex; flex-wrap: wrap; flex-direction: column; gap: 224px;
+    
+    /* ⭐ 아래에서 위로 올라오는 애니메이션 세팅 */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    position: relative; z-index: 2; /* 배경 위에 오도록 z-index 설정 */
+}
+
+/* 화면 진입 시 카드가 나타남 */
+#contact-screen.active .contact_card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact_top > .contents_title_small_en {
+    position: relative; z-index: 2; /* 인스타 텍스트도 배경 위로 (원치 않으면 z-index 제거) */
+}
+
+.contact_card_title_wrap { display: flex; flex-wrap: wrap; flex-direction: column; gap: 0; }
+.contact_card_title { font-size: 80px; color: #F0EAD8; }
+.contact_card_title_wrap .contents_article_small { color: #F0EAD8; }
+.contact_card .contents_article_small, .contact_card .contents_title_small_en, .message-box .contents_title_small_en { color: #F0EAD8; }
+
+.contact_box_wrap { width: 100%; padding: 88px 96px; box-sizing: border-box; background: #1A1A1A; }
+
+.contact-box { width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; }
+
+.contact_box_wrap_inside { width: 1440px; display: flex; flex-wrap: wrap; gap: 48px; }
+
+.contact_box_wrap_inside .input-box, .contact_box_wrap_inside .message-box {
+    display: flex; flex-wrap: wrap; flex-direction: column; gap: 16px;
+    padding-left: 36px; border-left: 1px solid #F0EAD8;
+}
+
+.contact_box_wrap_inside .input-box:first-child { width: 150px; }
+.contact_box_wrap_inside .input-box:nth-child(2) { width: 215px; }
+.contact_box_wrap_inside .input-box:last-child { width: 300px; }
+.contact_box_wrap_inside .message-box { width: 260px; }
+
+.contact_box_wrap_inside .contents_title_small_en { color: #F0EAD8; }
+.contact_box_wrap_inside .contents_title_medium_en { font-size: 28px; color: #666; background: transparent; border: none; outline: none; }
+.contact_box_title .contents_title_large_en { font-size: 200px; color: #F0EAD8; }
+
+.message-box .contents_title_medium_en { width: 1400px; height: 168px; resize: none; background: transparent; border: none; outline: none; }
+
+.btn { font-family: "finalsix", sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+.send-btn {
+    padding:  12px 36px; border-radius: 100px; transition: .3s;
+    display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center;
+    border: 1px solid #F0EAD8; box-sizing: border-box; color: #1a1a1a; background: #F0EAD8;
+}
+.send-btn:hover {
+    border: 1px solid #F0EAD8; box-sizing: border-box;
+    color: #F0EAD8; background: #1a1a1a; cursor: pointer;
+}
+.send-btn button { background: transparent; border: none; cursor: pointer; font: inherit; color: inherit; }
+
+.contact_box_title_wrap { width: 100%; display: flex; flex-wrap: wrap; flex-direction: column; gap: 0; align-items: flex-end; }
+.contact_box_title { width: 100%; display: inline-flex; flex-wrap: nowrap; gap: 8px; align-items: center; }
+.contact_title_rectangle { width: 100%; height: 172px; margin-top: 40px; box-sizing: border-box; background: #F0EAD8; }
+.contact_box_title_wrap .contents_article_small { color: #F0EAD8; }
+
+
+/* ========================================== */
+/* ⭐ 코드펜에서 가져온 배경 사각형 애니메이션 */
+/* ========================================== */
+.area {
+    /* contact_top의 배경으로 딱 맞게 깔리도록 absolute 설정 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* 컨텐츠 요소들과 겹쳤을 때 가려도 되는 위치 */
+}
+
+.circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0; padding: 0;
+}
+
+.circles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.4); /* 투명도를 살짝 올렸습니다 */
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+}
+
+.circles li:nth-child(1){ left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+.circles li:nth-child(2){ left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+.circles li:nth-child(3){ left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+.circles li:nth-child(4){ left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+.chimcles li:nth-child(5){ left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+.circles li:nth-child(6){ left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+.circles li:nth-child(7){ left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+.circles li:nth-child(8){ left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+.circles li:nth-child(9){ left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+.circles li:nth-child(10){ left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+@keyframes animate {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100% {
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}

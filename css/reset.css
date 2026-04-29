@@ -1,0 +1,14 @@
+* { margin: 0; padding: 0; vertical-align: top; }
+li { list-style: none; }
+a { text-decoration: none; }
+p { word-break: keep-all; }
+img { border: 0; max-width: 100%; }
+input, select { appearance: none; outline: none; }
+button, input, textarea, select {
+    font: inherit; color: inherit; background: none; border: none;
+    padding: 0; margin: 0; outline: none;
+}
+body {
+    font-family: "Pretendard Variable", Pretendard, sans-serif; background-color: #F0EAD8; 
+    max-width: 1920px; min-width: 320px; margin: 0 auto;
+}

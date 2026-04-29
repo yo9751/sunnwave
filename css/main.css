@@ -1,0 +1,187 @@
+/* 기본 초기화 및 전체 화면 설정 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; 
+    background-color: #F0EAD8; 
+    color: #333; 
+}
+
+/* 공통 화면 스타일 */
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* 화면 A: 메인 인트로 */
+#main_screen {
+    background-color: #fff;
+    transition: opacity 1.2s ease-in-out, transform 1.2s ease-in-out, visibility 1.2s;
+    transform-origin: center center; 
+    z-index: 20;
+}
+
+#main_screen.scale-down-hidden {
+    opacity: 0;
+    transform: scale(0.8);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.scroll-indicator {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+/* 화면 B: CD 플레이어 레이아웃 */
+#second_screen {
+    justify-content: space-around;
+    padding: 40px 0;
+    transition: opacity 1.2s ease-in-out, visibility 1.2s;
+    z-index: 10;
+}
+
+.cd-player-header {
+    font-family: "cc-mad-scientist", sans-serif;
+    font-size: 32px; font-weight: 700; line-height: 120%; letter-spacing: -0.5px;
+    margin-bottom: -100px; 
+}
+
+/* 중앙 플레이어 디스크 (드롭 존) */
+.cd-player-disc {
+    width: 366px;
+    height: 366px;
+    background: url(../images/cd_player_img.png) no-repeat center top / cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border 0.3s ease, background-color 0.3s ease;
+    position: relative;
+}
+
+/* 중앙 스핀들 (구멍) */
+.cd-player-disc::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* 하단 CD 컨테이너 */
+.cd-collection {
+    display: flex;
+    gap: 100px;
+}
+
+.cd-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CD 디스크 디자인 */
+.cd-disc {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    transition: transform 0.2s, opacity 0.2s;
+    margin-bottom: 20px; 
+}
+
+/* 회전하는 모습이 잘 보이도록 비대칭 빛 반사 레이어 추가 */
+.cd-disc::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        rgba(255,255,255,0.05) 0deg,
+        rgba(255,255,255,0.6) 45deg,
+        rgba(255,255,255,0.05) 90deg,
+        transparent 180deg,
+        rgba(255,255,255,0.05) 270deg,
+        rgba(255,255,255,0.6) 315deg,
+        rgba(255,255,255,0.05) 360deg
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+.cd-disc:active {
+    cursor: grabbing;
+}
+
+.cd-disc:hover {
+    transform: translateY(-10px);
+}
+
+/* CD 색상별 배경 */
+.cd-about, .cd-works, .cd-contact {
+    background: url(../images/cd_about.png) no-repeat 50% 50% / cover;
+}
+
+/* CD 라벨 */
+.cd-label {
+    font-size: 0.9rem;
+    letter-spacing: 0.2rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+}
+
+/* CD 플레이 애니메이션 */
+.playing-clone {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    animation: slow-lp-spin 3s ease-in-out forwards;
+}
+
+@keyframes slow-lp-spin {
+    0% { transform: scale(0.9) rotate(0deg); opacity: 0.5; }
+    10% { transform: scale(1) rotate(20deg); opacity: 1; }
+    100% { transform: scale(1) rotate(720deg); opacity: 1; } 
+}
+
+/* 일반 화면 숨김 상태 */
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}

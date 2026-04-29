@@ -1,0 +1,82 @@
+/* --- About 페이지 애니메이션 준비 상태 --- */
+.content-screen {
+    background-color: #fff;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+    z-index: 30;
+    width: 100%;
+    min-height: 100vh; /* 추가: 화면 전체 높이 확보 */
+}
+
+.back-btn {
+    padding: 10px 20px;
+    background: #333; 
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.about { 
+    width: 100%; 
+    min-height: 100vh; /* 수정: height: 100% 대신 min-height: 100vh 사용 */
+    box-sizing: border-box; /* 추가: 패딩 값이 전체 높이에 포함되도록 설정 */
+    padding: 40px; 
+    display: flex; 
+    flex-direction: column; 
+    background: #F0EAD8; 
+    position: relative; 
+}
+
+.header_gnb {
+    width: 100%; padding: 0 96px; box-sizing: border-box;
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+}
+
+.gnb ul { display: flex; flex-wrap: wrap; gap: 104px; }
+.gnb ul li a { color: #1A1A1A; }
+
+.device-mockups {
+    position: relative;
+    flex: 1; /* 중요: 부모(.about)의 남은 세로 공간을 꽉 채우도록 쭉 늘려줌 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* 추가: 너비 확보 */
+}
+
+.device-mockups > div {
+    opacity: 0; 
+    transform: translateY(100px); 
+    transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: absolute; /* 이 부분은 active 아래에 있지만, 여기서도 확실히 잡아주는 것이 좋습니다 */
+}
+
+/* --- About 페이지가 활성화(.active) 되었을 때 --- */
+#about-screen.active .monitor {
+    width: 1546px; height: 950px;
+    background: url(../images/monitor.png)no-repeat 50% 50% / cover;
+    opacity: 1; transform: translateY(0); transition-delay: 0.1s;
+    position: absolute; bottom: 0; left: 96px; z-index: 1;
+}
+
+#about-screen.active .desktop {
+    width: 1050px; height: 594px;
+    background: url(../images/desktop.png)no-repeat 50% 50% / cover;
+    opacity: 1; transform: translateY(0); transition-delay: 0.3s;
+    position: absolute; bottom: 292px; left: 158px; z-index: 2;
+}
+
+#about-screen.active .tablet {
+    width: 479px; height: 594px;
+    background: url(../images/tablet.png)no-repeat 50% 50% / cover;
+    opacity: 1; transform: translateY(0); transition-delay: 0.5s;
+    position: absolute; bottom: 148px; right: 344px; z-index: 3;
+}
+
+#about-screen.active .mobile {
+    width: 448px; height: 503px;
+    background: url(../images/mobile.png)no-repeat 50% 50% / cover;
+    opacity: 1; transform: translateY(0); transition-delay: 0.7s;
+    position: absolute; bottom: 0; right: 96px; z-index: 4;
+}

@@ -1,0 +1,385 @@
+/* --- 기본 레이아웃 및 애니메이션 --- */
+@keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeEffect {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.content-screen {
+    background-color: #fff; z-index: 30;
+    width: 100%; height: 100vh;
+    opacity: 0; visibility: hidden; 
+    overflow: hidden; 
+}
+
+.content-screen.active {
+    opacity: 1; visibility: visible;
+    animation: fade-in-up 0.8s ease-out forwards;
+}
+
+/* 커스텀 스무스 스크롤 설정 */
+.works { 
+    width: 100%; height: 100vh; 
+    background: #F0EAD8; 
+    overflow: hidden; 
+    position: relative;
+}
+
+.work-section {
+    width: 100%; height: 100vh; 
+    position: relative; 
+    overflow: hidden; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================== */
+/* 고정 헤더 & 뒤로가기 버튼 */
+/* ========================================== */
+.header_gnb {
+    position: fixed; top: 40px; left: 0;
+    width: 100%; padding: 0 96px; box-sizing: border-box;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 1000; pointer-events: none; 
+}
+.header_gnb > * { pointer-events: auto; }
+
+.gnb ul { display: flex; gap: 104px; }
+.gnb ul li a { color: #1A1A1A; text-decoration: none; transition: font-weight 0.2s; }
+.gnb ul li a.active { font-weight: bold; border-bottom: 2px solid #1A1A1A; }
+
+.back-btn {
+    padding: 10px 20px; background: #333; color: #fff; z-index: 1000;
+    border: none; border-radius: 20px; cursor: pointer; font-weight: bold;
+}
+
+/* ========================================== */
+/* Part 01. Web 프로젝트 (비디오 테이프) */
+/* ========================================== */
+.vhs-interaction-container {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    position: relative; width: 100%; height: 100%;
+    padding: 0 96px; box-sizing: border-box;
+}
+
+.dim-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    opacity: 0; pointer-events: none; transition: opacity 0.8s ease;
+    z-index: 50;
+}
+
+.vhs-gallery {
+    display: flex; gap: 60px;
+    justify-content: center; align-items: center;
+    width: 100%; height: 100%;
+    padding-right: 35vw; 
+    box-sizing: border-box; position: relative;
+}
+
+.vhs-item { height: 50vh; }
+
+.vhs-scene {
+    position: relative; height: 100%; width: 100px;
+    perspective: 2500px; z-index: 5;
+}
+
+.vhs-tape {
+    position: absolute; top: 0; left: 0; height: 100%; 
+    aspect-ratio: 1500 / 800; 
+    transform-style: preserve-3d; transform-origin: left center;
+    transform: rotateY(90deg) translateX(0); 
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.vhs-front {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    transform: translateZ(0); backface-visibility: hidden; cursor: pointer;
+}
+.vhs-front img { width: 100%; height: 100%; object-fit: contain; }
+
+.vhs-side {
+    position: absolute; top: 0; left: 0;
+    height: 100%; width: max-content; 
+    transform-origin: right center; transform: translateX(-100%) rotateY(-90deg);
+    background: transparent; cursor: pointer;
+}
+.vhs-side img { height: 100%; width: auto; object-fit: cover; display: block; }
+.vhs-side:hover { filter: brightness(1.2); }
+
+.vhs-item.is-expanded .vhs-scene {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    height: 50vh; width: auto; z-index: 100;
+}
+.vhs-item.is-expanded .vhs-tape { transform: rotateY(0deg) translateX(-40vw); }
+
+.work_web_title_wrap {
+    position: absolute; top: 50%; 
+    transform: translateY(-50%) translateX(50px);
+    width: 40vw; max-width: 700px; min-width: 320px; 
+    display: flex; flex-direction: column; gap: 30px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 1s ease 0.4s, transform 1s ease 0.4s; z-index: 100;
+}
+
+.vhs-item.is-expanded .work_web_title_wrap {
+    opacity: 1; transform: translateY(-50%) translateX(0); pointer-events: auto;
+    position: absolute; top: 50%; right: 5%;
+}
+.vhs-item.is-expanded .contents_title_large_en,
+.vhs-item.is-expanded .contents_title_large,
+.vhs-item.is-expanded .contents_article_medium {
+    color: #fff !important; text-shadow: 0px 2px 10px rgba(0,0,0,0.5);
+}
+
+.default_web_title_wrap {
+    position: absolute; top: 50%; right: 8vw; 
+    transform: translateY(-50%);
+    width: 40vw; max-width: 750px; min-width: 320px; text-align: right;
+    display: flex; flex-direction: column; gap: 100px;
+    z-index: 20; transition: opacity 0.5s ease; 
+}
+.default_web_title_wrap .work_web_title { display: flex; flex-wrap: wrap; flex-direction: column; gap: 24px; }
+.vhs-interaction-container:has(.is-expanded) .default_web_title_wrap { opacity: 0; pointer-events: none; }
+
+
+/* ========================================== */
+/* Part 02. App 프로젝트 */
+/* ========================================== */
+.work_app {
+    width: 100%; height: 100%; padding: 140px 96px 0 96px; margin: 0 auto; box-sizing: border-box;
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+}
+
+.tab_content { display: none; animation: fadeEffect 0.5s ease-out forwards; }
+
+.work_app_title_wrap { flex: 1; padding-right: 100px; }
+.app_text_item.active { display: flex; flex-direction: column; justify-content: center; }
+
+.work_app_title { display: flex; flex-wrap: wrap; flex-direction: column; gap: 24px; margin-bottom: 30px; }
+
+.app_iphone_wrap { position: relative; cursor: pointer; transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); }
+.app_iphone_wrap:hover { transform: scale(1.02); }
+
+.app_wrap {
+    position: absolute; top: 150px; left: 90px;
+    display: flex; flex-wrap: wrap; gap: 45px; z-index: 10;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.app { display: flex; flex-wrap: wrap; flex-direction: column; gap: 5px; align-items: center; }
+.app .contents_article_medium, .app .contents_title_small { color: #fff; text-align: center; font-size: 14px; transition: color 0.3s; }
+.icon_app { border-radius: 18px; transition: transform 0.2s; }
+.app:hover .icon_app { transform: scale(1.1); }
+
+.app_screen_overlay {
+    position: absolute; top: 3%; left: 6%; right: 6%; bottom: 0%;
+    /* border-radius: 40px; */ overflow: hidden;
+}
+
+.app_screen_item.active {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+}
+
+.app_splash_icon {
+    width: 80px; height: 80px; border-radius: 18px; position: absolute;
+    transition: opacity 0.4s ease; z-index: 5;
+}
+
+.app_carousel {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    opacity: 0; transition: opacity 0.5s ease;
+}
+
+.carousel_img {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0; transition: opacity 0.8s ease-in-out;
+}
+.carousel_img.active { opacity: 1; }
+
+.app_screen_item.is-playing .app_splash_icon { opacity: 0; }
+.app_screen_item.is-playing .app_carousel { opacity: 1; }
+
+.app_iphone_wrap.is-opened { transform: scale(1.05); }
+.app_iphone_wrap.is-opened .app_wrap { opacity: 0; transform: scale(0.9); pointer-events: none; }
+
+
+/* ========================================== */
+/* Part 03. Graphic 프로젝트 */
+/* ========================================== */
+.work_graphic {
+    width: 100%; height: 100%; 
+    padding: 140px 96px; 
+    box-sizing: border-box;
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between;
+    overflow: hidden; 
+    position: relative;
+}
+
+.work_graphic_title { 
+    width: 35%; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 80px; 
+    align-items: flex-start; 
+}
+.work_graphic_article { display: flex; flex-direction: column; gap: 24px; text-align: left; }
+
+.work_result { 
+    width: 55%; 
+    height: 100%; 
+    display: flex; flex-direction: column; gap: 80px; 
+    overflow-y: auto; 
+    padding-bottom: 140px; 
+    -ms-overflow-style: none; scrollbar-width: none; 
+}
+.work_result::-webkit-scrollbar { display: none; }
+
+.graphic_item_wrap { position: relative; }
+.graphic-thumbnail { cursor: pointer; transition: transform 0.3s ease; display: block; }
+.graphic-thumbnail:hover { transform: scale(1.02); }
+
+.graphic_popup {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 100vw; height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; visibility: hidden; pointer-events: none; z-index: 100;
+}
+.graphic_item_wrap.is-expanded .graphic_popup {
+    opacity: 1; visibility: visible; pointer-events: auto;
+}
+
+.graphic_popup_img {
+    height: 60vh; transform: translateX(-15vw); 
+    transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.graphic_popup_img img { height: 100%; width: auto; object-fit: contain; }
+
+.graphic_item_wrap.is-expanded .work_web_title_wrap {
+    opacity: 1; transform: translateY(-50%) translateX(0); pointer-events: auto;
+    position: absolute; top: 50%; right: 5%;
+}
+.graphic_item_wrap.is-expanded .contents_title_large_en,
+.graphic_item_wrap.is-expanded .contents_title_large,
+.graphic_item_wrap.is-expanded .contents_article_medium {
+    color: #fff !important; text-shadow: 0px 2px 10px rgba(0,0,0,0.5);
+}
+
+/* ========================================== */
+/* Part 04. Contact 프로젝트 (새로 병합된 섹션) */
+/* ========================================== */
+.contact-wrapper { 
+    width: 100%; 
+    height: 100vh; /* 부모 section이 100vh이므로 꽉 차게 */
+    box-sizing: border-box; 
+    display: flex; 
+    flex-direction: column; 
+    position: relative; 
+}
+
+.contact_top {
+    flex: 1; /* 남는 공간을 모두 채워 자연스럽게 100vh에 딱 맞춤 */
+    width: 100%; padding: 104px 300px 40px; box-sizing: border-box;
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end;
+    position: relative; 
+    overflow: hidden; 
+}
+
+.contact_card {
+    padding: 30px; background: #1a1a1a;
+    display: inline-flex; flex-wrap: wrap; flex-direction: column; gap: 224px;
+    
+    /* 애니메이션 대기 상태 */
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    position: relative; z-index: 2; 
+}
+
+/* 현재 섹션(Contact)이 활성화되었을 때 카드가 떠오름 */
+.work-section.active .contact_card {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact_top > .contents_title_small_en { position: relative; z-index: 2; }
+
+.contact_card_title_wrap { display: flex; flex-wrap: wrap; flex-direction: column; gap: 0; }
+.contact_card_title { font-size: 80px; color: #F0EAD8; }
+.contact_card_title_wrap .contents_article_small { color: #F0EAD8; }
+.contact_card .contents_article_small, .contact_card .contents_title_small_en, .message-box .contents_title_small_en { color: #F0EAD8; }
+
+.contact_box_wrap { width: 100%; padding: 88px 96px; box-sizing: border-box; background: #1A1A1A; z-index: 2; position: relative;}
+.contact-box { width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; }
+.contact_box_wrap_inside { width: 1440px; display: flex; flex-wrap: wrap; gap: 48px; }
+
+.contact_box_wrap_inside .input-box, .contact_box_wrap_inside .message-box {
+    display: flex; flex-wrap: wrap; flex-direction: column; gap: 16px;
+    padding-left: 36px; border-left: 1px solid #F0EAD8;
+}
+
+.contact_box_wrap_inside .input-box:first-child { width: 150px; }
+.contact_box_wrap_inside .input-box:nth-child(2) { width: 215px; }
+.contact_box_wrap_inside .input-box:last-child { width: 300px; }
+.contact_box_wrap_inside .message-box { width: 260px; }
+
+.contact_box_wrap_inside .contents_title_small_en { color: #F0EAD8; }
+.contact_box_wrap_inside .contents_title_medium_en { font-size: 28px; color: #666; background: transparent; border: none; outline: none; }
+.contact_box_title .contents_title_large_en { font-size: 200px; color: #F0EAD8; }
+.message-box .contents_title_medium_en { width: 1400px; height: 168px; resize: none; background: transparent; border: none; outline: none; }
+
+.btn { font-family: "finalsix", sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+.send-btn {
+    padding:  12px 36px; border-radius: 100px; transition: .3s;
+    display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center;
+    border: 1px solid #F0EAD8; box-sizing: border-box; color: #1a1a1a; background: #F0EAD8;
+}
+.send-btn:hover {
+    border: 1px solid #F0EAD8; box-sizing: border-box;
+    color: #F0EAD8; background: #1a1a1a; cursor: pointer;
+}
+.send-btn button { background: transparent; border: none; cursor: pointer; font: inherit; color: inherit; }
+
+.contact_box_title_wrap { width: 100%; display: flex; flex-wrap: wrap; flex-direction: column; gap: 0; align-items: flex-end; }
+.contact_box_title { width: 100%; display: inline-flex; flex-wrap: nowrap; gap: 8px; align-items: center; }
+.contact_title_rectangle { width: 100%; height: 172px; margin-top: 40px; box-sizing: border-box; background: #F0EAD8; }
+.contact_box_title_wrap .contents_article_small { color: #F0EAD8; }
+
+/* 배경 사각형 애니메이션 */
+.area {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; 
+}
+.circles {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden; margin: 0; padding: 0;
+}
+.circles li {
+    position: absolute; display: block; list-style: none;
+    width: 20px; height: 20px; background: rgba(255, 255, 255, 0.4); 
+    animation: animate 25s linear infinite; bottom: -150px;
+}
+.circles li:nth-child(1){ left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+.circles li:nth-child(2){ left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+.circles li:nth-child(3){ left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+.circles li:nth-child(4){ left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+.circles li:nth-child(5){ left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+.circles li:nth-child(6){ left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+.circles li:nth-child(7){ left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+.circles li:nth-child(8){ left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+.circles li:nth-child(9){ left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+.circles li:nth-child(10){ left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+@keyframes animate {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+    100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+}
